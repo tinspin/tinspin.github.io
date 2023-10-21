@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=300, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<style>
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fredoka.woff2) format('woff2');
+}
+  html { -webkit-text-size-adjust: none; }
+  a:link, a:hover, a:active, a:visited { color: [[ blue ]]; text-decoration: none; }
+  /*img { display: block; }*/
+  div { font-family: 'Fredoka One', monospace; color: #333333; }
+  table { margin: 5px; }
+  input { font-family: 'Fredoka One', monospace; box-sizing: border-box; }
+</style>
+</head>
+<body bgcolor="eeeeee">
+<img width="170px" src="svg/mos.svg">
+<div>
+Multiplayer Online Standard<br>
+Reference Implementation
+
+<ul style="list-style-type:circle">
+<li><img height="16" src="svg/unity2.svg"> C# (<a href="https://github.com/tinspin/fuse/wiki/Unity-Tutorial">client</a>)</li>
+<li><img height="16" src="svg/epic.svg"> C++ (client)</li>
+<li><img height="16" src="svg/java.svg"> Java (server uses <a href="https://github.com/tinspin/rupy">rupy</a>)</li>
+<li><img height="16" src="svg/html5.svg"> HTML5 (client)</li>
+</ul>
+    <ul style="list-style-type: none;"><li>
+    <img width="150" src="console.svg">
+    </li></ul>
+<ul style="list-style-type: none;">
+<li>Generic: User - Item - Room</li>
+    <li>JSON: Distributed async. <a href="http://root.rupy.se">database</a></li>
+<li>HTTP:
+    <ul style="list-style-type: none;">
+    <li>- Triplex TCP (2 sockets)</li>
+    <li>- Comet-Stream / Server-Sent Events</li>
+    <li>- Traverses all firewalls</li></ul>
+</li>
+<li>&nbsp;</li>
+<li>Async. hot-deploy to the global cluster.</li>
+<li>Completely <i>Atomic Parallel Non-Blocking Async.</i></li>
+<li>Global 100% Read Uptime (registered users<br>will always be able to login and play)</li>
+<li>&nbsp;</li>
+<li>Low internal latency: <a href="http://fuse.rupy.se/data">statistics</a> (Raspberry Pi 2)</li>
+<li>Source Available: <a href="https://github.com/tinspin/fuse">https://github.com/tinspin/fuse</a></li>
+<li>Integrated Forum: <a href="http://talk.binarytask.com">http://talk.binarytask.com</a></li>
+    <li>&nbsp;</li>
+    <li>Physics: Client predicts everything</li>
+    <li>Movement: Events instead of ticks</li>
+</ul>
+Examples:
+<ul style="list-style-type: none;">
+<li><table border="0">
+<tr><td width="50"><a href="http://aeonalpha.com"><img height="60" src="http://aeonalpha.com/aeb.svg"></a></td>
+<td><a href="http://ahoy.rupy.se"><img width="60" src="http://ahoy.rupy.se/icon.svg"></a></td>
+<td width="50">
+<a href="http://fuse.rupy.se/cube.html">
+<table cellspacing="0" cellpadding="0" style="margin: 5px;">
+<tr><td><img width="30px" style="display: block;" src="svg/blue.svg"></td><td><img width="30px" style="display: block;" src="svg/green.svg"></td><td></td></tr>
+<tr><td><img width="30px" src="svg/orange.svg"></td><td><img width="30px" src="svg/purple.svg"></td></tr>
+</table>
+</a></td>
+<td rowspan="2" align="left"><a name="meadow" href="http://store.steampowered.com/app/486310/"><img height="222" style="image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; -ms-interpolation-mode: nearest-neighbor;" src="http://move.rupy.se/file/meadow.jpg"></a></td>
+</tr>
+    <tr><td colspan="3"><a href="http://fuse.rupy.se/bomb.html"><img style="image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; -ms-interpolation-mode: nearest-neighbor; image-rendering: pixelated;" src="http://move.rupy.se/file/bomb.gif"></a></td></tr>
+</table></li>
+</ul>
+<font>Performance: (Meadow)</font>
+<ul style="list-style-type: none;"><li><font>150 concurrent users ~30% CPU on AWS T2 Micro (3 ECU burst?)</font></li>
+<li><font color="#ff9900">&nbsp;&nbsp;&nbsp;&nbsp;Then we upgraded because CPU credits were<br>&nbsp;&nbsp;&nbsp;&nbsp;running low and not replenishing at night:</font></li>
+<li><font>200 concurrent users ~12.5% CPU on AWS T2 Medium (10 ECU burst?)</font></li>
+<li><font>250 concurrent users ~15% CPU on AWS T2 Medium (10 ECU burst?)</font></li>
+<li><font>450 concurrent users ~25% CPU on AWS T2 Medium (10 ECU burst?)</font></li>
+<li><font>450 concurrent users ~40% CPU on AWS M4 Large (6.5 ECU)</font></li>
+<li><font color="#00cc33">&nbsp;&nbsp;&nbsp;&nbsp;At peak the 3x node intercontinental cluster ran with<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;1100 concurrent players for ~20$/day.</font></li>
+    <li><font color="#6699ff">&nbsp;&nbsp;&nbsp;&nbsp;This was during a 3 day surge where we added 50.000 players<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;which meant a revenue of ~50.000$/day.</font></li>
+<li><font color="#00cc33">&nbsp;&nbsp;&nbsp;&nbsp;When at 450 concurrent users each server receives 2.000<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;and sends 100.000 move messages per second while<br>&nbsp;&nbsp;&nbsp;&nbsp;keeping internal latency low enough for FPS games.</font></li>
+<li><font color="#00cc33">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scales linearly / zero io-wait</font></li>
+<li><font color="#00cc33">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100% stable / zero leakage</font></li></ul>
+Advantages:
+<ul style="list-style-type:circle">
+<li>Scalable - 1000 mess.in+out/s on Raspberry Pi 1 / Distr. Async. DB</li>
+<li>Simple - Virtual Host Hotdeploy / HTTP JSON File DB / HTTP API</li>
+<li>Stable - Infinite Uptime / No Maintenance / 8 Years Old</li>
+    <li>Secure - One-Time Salt Password Hash Login<br></li></ul>
+    <ul style="list-style-type: none;"><li>
+        <img height="175" src="advance.svg">
+    </li></ul>
+    <ul style="list-style-type:circle">
+<li><font color="#00cc33">One process for C#, C++ and HTML5 cross play, website and database!</font></li>
+<li>200KB total size (excl. Java)</li>
+<li>Global 100% Read Uptime</li>
+<li>Commercial License starting at 20$/Month</li>
+</ul>
+Flaws (2018-11-30):
+<ul style="list-style-type: circle">
+<li><font color="#ff3300">759 out of 205.875 customers refunded</font> because their antivirus blocks the pull HTTP stream</li>
+<li>You need large database hard-drives; Meadow uses <font color="#ff3300">100KB per user</font>, also inodes run out<br>before disk space if you don't configure the /app mount with 'mkfs.ext4 -T small'</li>
+<li>Peak garbage collect is <font color="#ff3300">7ms</font> once per minute on AWS T2 Micro instance</li>
+</ul>
+    Roadmap (2020-02-02):
+    <ul style="list-style-type: none;">
+        <li>Update 2020-11-02: <a href="http://talk.binarytask.com/task?id=5959519327505901449">Preview Teaser!</a></li>
+        <li>Update 2020-12-02: <a href="http://move.rupy.se/file/park_engine.html">A bold prediction!</a></li>
+        <li>Update 2020-12-04: <a href="http://move.rupy.se/file/logic.html">Integrate drag'n drop scripting?</a></li>
+        <li>Khronos (OpenGL/AL and Collada) C+ (C syntax compiled with g++/cl.exe) 3D Engine.</li>
+        <li>Gumroad License, Github Sponsorship and Itch Prepaid & Subscription.</li>
+        <li><br>
+            <img height="75" src="http://ahoy.rupy.se/park.svg">&nbsp;&nbsp;<img width="250" src="http://move.rupy.se/file/logo.svg"><br><br>
+            <img width="500" src="http://move.rupy.se/file/park.svg"><br><br>
+            <!--img height="50" src="http://move.rupy.se/file/park.png"><br><br-->
+            <div style="width: 200px; position: relative; left: 0; top: 0;">
+                <img src="http://ahoy.rupy.se/girl.gif" style="position: relative; top: 0; left: 0; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; -ms-interpolation-mode: nearest-neighbor; image-rendering: pixelated;"/>
+                <img height="50" src="svg/cp.svg" style="position: absolute; top: 0px; left: 0px;"/>
+                <div style="position: absolute; left: 0px; bottom: 0px;">
+                    <svg style="position: relative; top: 0px; left: 0px;" height="50" width="50">
+                        <circle cx="25" cy="25" r="25" fill="#333333" />
+                    </svg>
+                    <img style="position: absolute; top: 13px; left: 8px;" src="http://aeonalpha.com/vanilla.svg" height="25">
+                </div>
+                <img height="50" src="svg/itch.svg" style="position: absolute; top: 0px; right: 0px;"/>
+                <img height="50" src="svg/github.svg" style="position: absolute; bottom: 0px; right: 0px;"/>
+                <!--img style="position: absolute; bottom: 25px; right: 0px;" width="250" src="http://move.rupy.se/file/park.png"-->
+                <!--img height="32" src="http://aeonalpha.com/vanilla.svg" style="position: absolute; bottom: 10px; left: 10px;"/-->
+            </div></li>
+        <li>&nbsp;</li>
+        <li>
+            Rendered vertex skinned characters at 60 FPS and GPU 100% saturated:<br>
+            <table>
+                <tr><td></td><td>Device</td><td>GW</td><td>CGW</td><td>C%</td><td>Total</td><td>Year</td><td>NM</td><td>GL</td></tr>
+                <tr><td>400x</td><td>3770S/4000HD</td><td>57x</td><td>11x</td><td><font color="#ff3300">1%</font></td><td>35W</td><td>2012</td><td>22</td><td>3</td></tr>
+                <tr><td><a href="http://talk.binarytask.com/task?id=4064110776042269443">100x</a></td><td>Raspberry 4</td><td>100x</td><td>20x</td><td><font color="#00cc33">45%</td><td><font color="#00cc33">5W</td><td>2019</td><td>28</td><td>ES&nbsp;3</td></tr>
+                <tr><td><a href="http://move.rupy.se/file/jetson.mp4">600x</a></td><td>Jetson&nbsp;Nano&nbsp;2GB&nbsp;&nbsp;</td><td>150x</td><td>60x</td><td><font color="#00cc33">65%</td><td><font color="#00cc33">10W</td><td>2020</td><td>16</td><td>ES&nbsp;3</td></tr>
+                <tr><td>?x</td><td>Human Brain</td><td>?x</td><td>?x</td><td>?%<td><font color="#ff9900">12W</font></td><td>!</td><td>?</td><td>?</td></tr>
+                <tr><td><a href="http://talk.binarytask.com/task?id=579711216639635462">3.500x</a></td><td>6600/1050Ti</td><td>233x</td><td>166x</td><td>100%</td><td><font color="#ff3300">105W</font></td><td>2016</td><td>14</td><td>3</td></tr>
+            </table>
+            GW = x Per GPU Watt.<br>
+            CGW = x Per CPU + GPU Watt.<br>
+            C% = Render single CPU core usage.
+        </li>
+        <li>&nbsp;</li>
+        <li>Physics: Distributed collision, server validation on disagreement<br>and/or random 3rd party authority selection, report election<br>for performance burst.</li>
+        <li>&nbsp;</li>
+        <li>Movement: Polar ADC - DAC compression for input over network.<br>Delay precision correction until delta is (s)low enough.</li>
+        <li>&nbsp;</li>
+        <li><img width="50px" src="polar.svg"></li>
+    </ul>
+    Competition:
+<ul style="list-style-type: none;">
+<li>None of the competition has an integrated<br>async-to-async distributed database or web<br>server that can scale across continents<br>or hot-deploy in under 2 seconds.<br><br></li>
+<li><a href="https://forums.improbable.io/t/newer-dependencies/3042">SpatialOS</a> (Java, uses netty/akka) <font color="red">80MB total size = x400 and now military only?!</font></li>
+    <li><a href="http://www.smartfoxserver.com">Goto & Play</a> (Java)</li>
+    <li><br>None of the systems below can scale on<br>multiple cores across the same room<br>instance:<br><br></li>
+<li><a href="http://defunct">Much Different</a> (C#) <font color="red">Defunct</font></li>
+<li><a href="https://www.photonengine.com/en-US/Photon">Exit Games</a> (C++/C#) <font color="red">Only Windows</font></li>
+<li><a href="https://github.com/heroiclabs/nakama">Nakama</a> (Go)</li>
+</ul>
+    Tutorial:<br>
+    <ul style="list-style-type: none"><li>
+        Server<br><br>
+        1) Install JDK (See below for my own backups of free Java) and <a href="https://ant.apache.org/bindownload.cgi">Ant</a>, add their /bin folders to OS path.<br>
+        2) Download/clone fuse-master from <a href="https://github.com/tinspin/fuse">github</a>, all instructions below are from inside the fuse-master folder.<br><br>
+        Local (single developer; testing, learning, prototype)<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;3a) Start the server with run.sh or run.bat.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;3b) Run "ant local".<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;By default the project will use root.rupy.se as database.<br>
+        <br>
+        Remote (global cluster, multiple developers; separate domains for test and live etc.)<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;4a) Register on <a href="http://host.binarytask.com">binarytask</a>. Pick any available &lt;name&gt;.binarytask.com or use your own domain.</name><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;4b) Edit the root property (at the top) in build.xml to the domain you registered.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;4c) Replace ${fuse.rupy.se} in the remote target (at the bottom) with the password.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;4d) Run "ant remote".<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;By default the project will use base.binarytask.com as database.<br>
+        <br>
+        Client<br><br>
+        5) Copy Fuse.cs/Fuse.cpp to your client project.<br>
+        6) Edit host and port depending on local/remote.<br>
+    </li></ul>
+Hosting:<br>
+    <ul style="list-style-type: none;"><li><a href="http://sprout.rupy.se/article?id=290"><img style="image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; -ms-interpolation-mode: nearest-neighbor; image-rendering: pixelated;" src="http://sprout.rupy.se/file/2/9/1/cluster-200.jpeg"></a></li></ul>
+<ul style="list-style-type: circle"><li>Dedicated: Minimum equivalent of two micro instances, last free Oracle Java (8u181):</li>
+    <ul style="list-style-type: circle">
+    <li><a href="http://move.rupy.se/file/jdk-8u181-linux-arm32-vfp-hflt.tar.gz">jdk-linux-arm32.tar</a> / <a href="http://move.rupy.se/file/jdk-8u181-linux-arm64-vfp-hflt.tar.gz">jdk-linux-arm64.tar</a></li>
+    <li><a href="http://move.rupy.se/file/jdk-8u181-linux-x64.rpm">jdk-linux-x64.rpm</a></li>
+    <li><a href="http://move.rupy.se/file/jdk-8u181-linux-x64.tar.gz">jdk-linux-x64.tar</a> / <a href="http://move.rupy.se/file/jdk-8u181-windows-x64.exe">jdk-windows-x64.exe</a></li>
+        <li><a href="http://move.rupy.se/file/jre-8u181-linux-x64.tar.gz">jre-linux-x64.tar</a> / <a href="http://move.rupy.se/file/jre-8u181-windows-x64.tar.gz">jre-windows-x64.tar</a></li>
+    </ul>
+<li>"Cloud": We host and maintain on globally redundant hybrid cloud: <a href="http://host.binarytask.com">host.binarytask.com</a>
+    <ul style="list-style-type: circle">
+        <li>Taipei & Hong Kong in Asia</li><li>Omaha & Kansas City in US</li><li>Zürich & Berlin in Europe</li></ul></li></ul>
+License:<br>
+    <ul style="list-style-type:circle">
+        <li>You have to show the <img width="45px" src="svg/mos.svg"> logo on startup. (also availiable with <br>
+            white outline: <img width="45px" src="http://fuse.rupy.se/svg/mos_outline.svg">)</li>
+        <li>You have to sponsor my fuse <a href="http://tinspin.gumroad.com/l/xwluh">tier</a> on gumroad (according <br>
+            to your entire company structures yearly revenue) during the time <br>
+            you are using this commercially.</li>
+        <li>Last but not least the .html files (including content in them) are <br>
+            proprietary and cannot be used commercially as is, from the play.html <br>
+            you can reuse the platform specific javascript though!</li>
+    </ul>
+    Documentation:<br>
+    <ul style="list-style-type:circle">
+        <li><a href="doc/game_networking_json_vs_custom_binary_protocol.txt">game_networking_json_vs_custom_binary_protocol_over_TLS/TCP</a></li>
+        <li><a href="doc/why_do_game_developers_use_udptcp_ports_that_are.txt">why_do_game_developers_use_udptcp_ports_that_are_not_open_by_default?</a></li>
+    </ul>
+
+Contact:<br>
+<form method="post">
+<table style="margin: 5px;">
+[[ back.length() > 0 ? "<tr><td colspan=\"2\"><font color=\"" + (done.equals("OK") ? green : red) + "\">" + back + "</font></td></tr>" : "" ]]
+<tr><td>Name:&nbsp;</td><td><input type="text" name="name" style="color: #00cc33;" value="[[ name ]]"></td></tr>
+<tr><td>Mail:&nbsp;</td><td><input type="text" name="mail" style="color: #ff9900;" value="[[ mail ]]"></td></tr>
+<tr><td></td><td><input style="color: #333333;" type="submit"></td></tr>
+</table>
+</form>
+</div>
+</body>
+</html>
