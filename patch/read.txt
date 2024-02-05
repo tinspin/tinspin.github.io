@@ -1,0 +1,6 @@
+Considering using github pages for patch data.
+The big concern is the 100GB/month limit.
+Antiviruses block HTTP and I really don't want to host my own HTTPS.
+Thinking I can download patch data over TCP instead.
+But that will also get blocked.
+I guess yolo HTTP it is?
