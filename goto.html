@@ -1,7 +1,7 @@
 <script>
   var path = window.location.href.split('#')[1];
   if(path && path.length > 0) {
-    path = path.replaceAll("~", '.');
+    path = path.replaceAll(",", '.');
     path = path.replaceAll("|", '/');
     window.location.href = "http://" + path;
   }
@@ -9,7 +9,7 @@
     path = document.getElementById('text').value;
     if(path.startsWith("https")) alert('No HTTPS allowed!')
     path = path.substring(7);
-    path = path.replaceAll(".", '~');
+    path = path.replaceAll(".", ',');
     path = path.replaceAll("/", '|');
     path = "https://multiplayeronlinestandard.com/goto.html#" + path;
     document.getElementById('show').innerHTML = "<a target=\"new\" href=" + path + ">" + path + "<a/>";
