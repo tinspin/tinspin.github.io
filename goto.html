@@ -12,7 +12,7 @@
     path = path.replaceAll(".", '~');
     path = path.replaceAll("/", '|');
     path = "https://multiplayeronlinestandard.com/goto.html#" + path;
-    document.getElementById('show').innerHTML = "<a href=" + path + ">" + path + "<a/>";
+    document.getElementById('show').innerHTML = "<a target=\"new\" href=" + path + ">" + path + "<a/>";
   }
 </script>
 Welcome to HTTPS to HTTP redirect.<br>
