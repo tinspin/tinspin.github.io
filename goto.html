@@ -1,3 +1,6 @@
 <script>
-  window.location.href = "http://" + window.location.href.split('#')[1];
+  var path = window.location.href.split('#')[1];
+  path = path.replace("_", ".");
+  path = path.replace("-", "/");
+  window.location.href = "http://" + path;
 </script>
