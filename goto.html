@@ -1,6 +1,20 @@
 <script>
   var path = window.location.href.split('#')[1];
-  path = path.replaceAll("_", '.');
-  path = path.replaceAll("-", '/');
-  window.location.href = "http://" + path;
+  if(path.length() > 0) {
+    path = path.replaceAll("_", '.');
+    path = path.replaceAll("-", '/');
+    window.location.href = "http://" + path;
+  }
+  function make() {
+    path = document.getElementById('text').value;
+    if(path.startsWith("https")) alert('No HTTPS allowed!')
+    path = path.substring(7);
+    path = path.replaceAll(".", '_');
+    path = path.replaceAll("/", '-');
+    document.getElementById('text').innerHTML = path
+  }
 </script>
+Welcome to HTTPS to HTTP redirect.<br>
+<input id="text" type="text"><br>
+<a href="javascript:make();">Make redirect URL</a><br>
+<div id="redirect"></div>
