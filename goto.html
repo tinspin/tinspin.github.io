@@ -8,11 +8,13 @@
   function make() {
     path = document.getElementById('text').value;
     if(path.startsWith("https")) alert('No HTTPS allowed!')
-    path = path.substring(7);
-    path = path.replaceAll(".", ',');
-    path = path.replaceAll("/", '|');
-    path = "https://multiplayeronlinestandard.com/goto.html#" + path;
-    document.getElementById('show').innerHTML = "<a target=\"new\" href=" + path + ">" + path + "<a/>";
+    else {
+      path = path.substring(7);
+      path = path.replaceAll(".", ',');
+      path = path.replaceAll("/", '|');
+      path = "https://multiplayeronlinestandard.com/goto.html#" + path;
+      document.getElementById('show').innerHTML = "<a target=\"new\" href=" + path + ">" + path + "<a/>";
+    }
   }
 </script>
 Welcome to HTTPS to HTTP redirect.<br>
