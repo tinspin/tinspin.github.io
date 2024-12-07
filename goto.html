@@ -11,7 +11,8 @@
     path = path.substring(7);
     path = path.replaceAll(".", '_');
     path = path.replaceAll("/", '-');
-    document.getElementById('show').innerHTML = path
+    path = "https://multiplayeronlinestandard.com/goto.html#" + path;
+    document.getElementById('show').innerHTML = "<a href=" + path + ">" + path + "<a/>";
   }
 </script>
 Welcome to HTTPS to HTTP redirect.<br>
