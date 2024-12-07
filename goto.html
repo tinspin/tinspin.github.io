@@ -11,10 +11,10 @@
     path = path.substring(7);
     path = path.replaceAll(".", '_');
     path = path.replaceAll("/", '-');
-    document.getElementById('text').innerHTML = path
+    document.getElementById('show').innerHTML = path
   }
 </script>
 Welcome to HTTPS to HTTP redirect.<br>
 <input id="text" type="text"><br>
 <a href="javascript:make();">Make redirect URL</a><br>
-<div id="redirect"></div>
+<div id="show"></div>
