@@ -1,4 +1,6 @@
-<script>
+<html>
+<head>
+  <script>
   var path = window.location.href.split('#')[1];
   if(path && path.length > 0) {
     path = path.replaceAll("+", '.');
@@ -16,8 +18,12 @@
       document.getElementById('show').innerHTML = "<a target=\"new\" href=" + path + ">" + path + "<a/>";
     }
   }
-</script>
-Welcome to HTTPS to HTTP redirect.<br>
-<input id="text" type="text"><br>
-<a href="javascript:make();">Make redirect URL</a><br>
-<div id="show"></div>
+  </script>
+</head>
+<body bgcolor="#333333">
+  <font color="#999999">Welcome to HTTPS to HTTP redirect.</font><br>
+  <input id="text" type="text"><br>
+  <a href="javascript:make();">Make redirect URL</a><br>
+  <div id="show"></div>
+  </body>
+</html>
