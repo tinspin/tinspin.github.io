@@ -9,9 +9,9 @@
   }
   function make() {
     path = document.getElementById('text').value;
-    if(path.startsWith("https")) alert('No HTTPS allowed!');
+    if(path.startsWith("https://")) alert('No HTTPS allowed!');
     else {
-      path = path.substring(7);
+      if(path.startsWith("http://")) path = path.substring(7);
       path = path.replaceAll(".", '+');
       path = path.replaceAll("/", '~');
       path = "https://multiplayeronlinestandard.com/goto.html#" + path;
