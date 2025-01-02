@@ -52,8 +52,13 @@
     path = path.replaceAll("~", '/');
 
     //var site = "https://nl.hideproxy.me/go.php?u=" + path;
-    var site = "https://" + host + ".translate.goog" + file + "&_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=sv&_x_tr_pto=wapp"
+    var site = "https://" + host + ".translate.goog";
 
+    if(file.length > 0)
+      site = site + file + "&_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=sv&_x_tr_pto=wapp";
+    else
+      site = site + "?_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=sv&_x_tr_pto=wapp";
+    
     console.log(site);
     
     document.getElementById('frame').src = site;
