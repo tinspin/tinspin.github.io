@@ -44,7 +44,7 @@
     var host = page[0];
     var file = "";
 
-    for(int i = 1; i < page.length; i++)
+    for(var i = 1; i < page.length; i++)
       file = '/' + page[i];
     
     host = host.replaceAll("+", '-');
