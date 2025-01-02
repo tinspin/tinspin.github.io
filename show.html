@@ -30,18 +30,31 @@
   Welcome to HTTPS to HTTP frame.<br>
   <input id="text" type="text">&nbsp;<a href="javascript:make();">Make frame URL</a><br>
   <div id="show"></div>
+  <!--
   To show page you need to manually disable security by clicking the lock to the left of the address bar:<br>
   - Chrome: Site settings, then scroll down to Insecure content and select Allow<br>
-  - Firefox: Connection secure > Disable protection for now<br>
-  Below the following URL should then display: <font id="url" color="#ff9900"></font>
+  - Firefox: Connection secure > Disable protection for now<br-->
+  Below the following URL should display: <font id="url" color="#ff9900"></font>
   <iframe id="frame" src="" height="700" width="1200"></iframe> 
   </body>
   <script>
   var path = window.location.href.split('#')[1];
   if(path && path.length > 0) {
-    path = path.replaceAll("+", '.');
-    path = path.replaceAll("~", '/');
-    document.getElementById('frame').src = "http://" + path;
+    var page = path.split('~')
+    var host = page[0];
+    var file = "";
+
+    for(int i = 1; i < page.length; i++)
+      file = '/' +page[i];
+    
+    host = host.replaceAll("+", '-');
+    //path = path.replaceAll("~", '/');
+    //risc-binarytask-com
+    //task?id=8149650656616654848
+    
+    var site = "https://" + host + ".translate.goog/" + path + "&_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=sv&_x_tr_pto=wapp"
+    
+    document.getElementById('frame').src = site;
     document.getElementById('url').innerHTML = "http://" + path;
   }
   </script>
