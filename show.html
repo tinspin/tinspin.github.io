@@ -14,7 +14,7 @@
       if(path.startsWith("http://")) path = path.substring(7);
       path = path.replaceAll(".", '+');
       path = path.replaceAll("/", '~');
-      path = "https://multiplayeronlinestandard.com/goto.html#" + path;
+      path = "https://multiplayeronlinestandard.com/show.html#" + path;
       document.getElementById('show').innerHTML = "<a target=\"new\" href=" + path + ">" + path + "<a/>";
     }
   }
