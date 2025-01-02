@@ -1,12 +1,6 @@
 <html>
 <head>
   <script>
-  var path = window.location.href.split('#')[1];
-  if(path && path.length > 0) {
-    path = path.replaceAll("+", '.');
-    path = path.replaceAll("~", '/');
-    document.getElementById('frame').src = "http://" + path;
-  }
   function make() {
     path = document.getElementById('text').value;
     if(path.startsWith("https://")) alert('No HTTPS allowed!');
@@ -27,4 +21,12 @@
   <div id="show"></div>
    <iframe id="frame" src="" height="1000" width="1200"></iframe> 
   </body>
+  <script>
+  var path = window.location.href.split('#')[1];
+  if(path && path.length > 0) {
+    path = path.replaceAll("+", '.');
+    path = path.replaceAll("~", '/');
+    document.getElementById('frame').src = "http://" + path;
+  }
+  </script>
 </html>
