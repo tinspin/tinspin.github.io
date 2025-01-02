@@ -5,7 +5,7 @@
   if(path && path.length > 0) {
     path = path.replaceAll("+", '.');
     path = path.replaceAll("~", '/');
-    document.getElementById('show').src = "http://" + path;
+    document.getElementById('frame').src = "http://" + path;
   }
   function make() {
     path = document.getElementById('text').value;
