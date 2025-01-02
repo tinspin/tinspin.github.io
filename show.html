@@ -31,8 +31,8 @@
   <input id="text" type="text">&nbsp;<a href="javascript:make();">Make frame URL</a><br>
   <div id="show"></div>
   To show page you need to manually disable security by clicking the lock to the left of the address bar:<br>
-  Chrome: Site settings, then scroll down to Insecure content and select Allow.<br>
-  Firefox: Connection secure > Disable protection for now
+  - Chrome: Site settings, then scroll down to Insecure content and select Allow<br>
+  - Firefox: Connection secure > Disable protection for now<br>
   Below the current URL should then display: <font id="url" color="#993300"></font>
   <iframe id="frame" src="" height="700" width="1200"></iframe> 
   </body>
@@ -42,7 +42,7 @@
     path = path.replaceAll("+", '.');
     path = path.replaceAll("~", '/');
     document.getElementById('frame').src = "http://" + path;
-    document.getElementById('url').src = "http://" + path;
+    document.getElementById('url').innerHTML = "http://" + path;
   }
   </script>
 </html>
