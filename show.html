@@ -1,0 +1,30 @@
+<html>
+<head>
+  <script>
+  var path = window.location.href.split('#')[1];
+  if(path && path.length > 0) {
+    path = path.replaceAll("+", '.');
+    path = path.replaceAll("~", '/');
+    document.getElementById('show').src = "http://" + path;
+  }
+  function make() {
+    path = document.getElementById('text').value;
+    if(path.startsWith("https://")) alert('No HTTPS allowed!');
+    else {
+      if(path.startsWith("http://")) path = path.substring(7);
+      path = path.replaceAll(".", '+');
+      path = path.replaceAll("/", '~');
+      path = "https://multiplayeronlinestandard.com/goto.html#" + path;
+      document.getElementById('show').innerHTML = "<a target=\"new\" href=" + path + ">" + path + "<a/>";
+    }
+  }
+  </script>
+</head>
+<body bgcolor="#333333">
+  <font color="#999999">Welcome to HTTPS to HTTP frame.</font><br>
+  <input id="text" type="text"><br>
+  <a href="javascript:make();">Make redirect URL</a><br>
+  <div id="show"></div>
+   <iframe id="frame" src="" height="200" width="300"></iframe> 
+  </body>
+</html>
