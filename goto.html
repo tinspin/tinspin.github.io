@@ -1,5 +1,16 @@
 <html>
 <head>
+  <style>
+    @font-face {
+      font-family: 'Fredoka One';
+      font-style: normal;
+      font-weight: 400;
+      src: url(fredoka.woff2) format('woff2');
+    }
+    div { font-family: 'Fredoka One', monospace; color: #ff3300; }
+    body { font-family: 'Fredoka One', monospace; color: #999999; }
+    a:link, a:hover, a:active, a:visited { color: #ff9900; text-decoration: none; }
+  </style>
   <script>
   var path = window.location.href.split('#')[1];
   if(path && path.length > 0) {
@@ -21,9 +32,8 @@
   </script>
 </head>
 <body bgcolor="#333333">
-  <font color="#999999">Welcome to HTTPS to HTTP redirect.</font><br>
-  <input id="text" type="text"><br>
-  <a href="javascript:make();">Make redirect URL</a><br>
+  Welcome to HTTPS to HTTP redirect.<br>
+  <input id="text" type="text">&nbsp;<a href="javascript:make();">Make redirect URL</a><br>
   <div id="show"></div>
   </body>
 </html>
