@@ -15,8 +15,8 @@
   <script>
   var path = window.location.href.split('#')[1];
   if(path && path.length > 0) {
-    path = path.replace(/:+:/g, '.');
-    path = path.replace(/:~:/g, '/');
+    path = string.split("+").join('.');
+    path = string.split("~").join('.');
     window.location.href = "http://" + path;
   }
   function make() {
@@ -24,8 +24,8 @@
     if(path.startsWith("https://")) alert('No HTTPS allowed!');
     else {
       if(path.startsWith("http://")) path = path.substring(7);
-      path = path.replace(/:.:/g, '+');
-      path = path.replace(/:/:/g, '~');
+      path = string.split(".").join('.');
+      path = string.split("/").join('.');
       path = "https://multiplayeronlinestandard.com/goto.html#" + path;
       document.getElementById('show').innerHTML = "<a target=\"new\" href=" + path + ">" + path + "<a/>";
     }
